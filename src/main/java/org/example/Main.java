@@ -29,7 +29,7 @@ public class Main {
 
         /** trovo l'elemento a cui voglio puntare nell'html
          * (XPath ti consente di trovare elementi in una pagina html
-         * in questo caso potrei usare getFromByName tuttavia non è il caso) **/
+         * in questo caso potrei usare getFormByName tuttavia non è il caso) **/
 
         HtmlForm form = (HtmlForm) searchPage.getByXPath("//form").get(0);
 
@@ -75,14 +75,14 @@ public class Main {
                      */
                     row.getCell(0).getTextContent(),
                     /** memeber id **/
-                    row.getCell(0).getTextContent(),
+                    row.getCell(1).getTextContent(),
                     /** regular rating c'è il rischio che sia null quindi creo una variabile che
                      * controlla a monte e con un ternario decido l'output a seguito del controllo
                      * sulla stringa fatto nel rigo 62 (dato che alcuni dati sono stringhe "" equivale a 1 e lo setto su 0)
                      */
-                    rating.length()==0 ? null: 0,
+                    rating.length()==0 ? null: Integer.parseInt(rating),
                     /** (riga 65)stesso ragionamento per il quick rating del giocatore */
-                    rating.length()==0 ? null: 0
+                    quickrating.length()==0 ? null: Integer.parseInt(quickrating)
             );
         }).collect(Collectors.toList());
         return chessplayers;
